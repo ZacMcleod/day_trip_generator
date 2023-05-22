@@ -21,7 +21,7 @@ def welcome_to_day_trip_generator():
 def prompt_every_variable_choice():
     choice = ''
     while True:
-        choice = input(f'Would you like a random day trip for every variable?: (destinations, restaurants, transportations, entertainments): ').lower()
+        choice = input(f'Would you like all of these to be randomized for the Day Trip: (destinations, restaurants, transportations, entertainments): ').lower()
         if choice == 'yes':
             return True
         elif choice == 'no':
@@ -85,20 +85,20 @@ def satisfied():
         time.sleep(2)
         return False
 
-def what_not_satisfied_prompt():
+def while_not_satisfied_prompt():
     while True:
         event_not_satisfied = input("Type one event that you are not satisfied with. (if all, type 'all'): ")
         if event_not_satisfied in day_trip_lists_str:
             if 'destination' == event_not_satisfied:
                 new_random_event = random.choice(destinations)
                 time.sleep(1)
-            if 'transportation' == event_not_satisfied:
+            elif 'transportation' == event_not_satisfied:
                 new_random_event = random.choice(transportations)
                 time.sleep(1)
-            if 'entertainment' == event_not_satisfied:
+            elif 'entertainment' == event_not_satisfied:
                 new_random_event = random.choice(entertainments)
                 time.sleep(1)
-            if 'restaurant' == event_not_satisfied:
+            elif 'restaurant' == event_not_satisfied:
                 new_random_event = random.choice(restaurants)
                 time.sleep(1)
         elif event_not_satisfied.lower() == 'all':
@@ -108,14 +108,8 @@ def what_not_satisfied_prompt():
             print("I'm sorry, I don't understand")
             time.sleep(1)
             continue
-        satisfied_yet = input(f'''The new event for {event_not_satisfied} is {new_random_event}
-Are you satisfied?: ''')
-        if satisfied_yet.lower() == 'no':
-            continue
-        elif satisfied_yet.lower() == 'yes':
-            print(f'''Great! Those are your events: 
-                        ''')
-            return False
+        print(f'The new event for {event_not_satisfied} is {new_random_event}')
+        return True
 
 # Day Trip Generator
 welcome_to_day_trip_generator()
@@ -128,14 +122,12 @@ while True:
         events_to_randomize = what_events_to_randomize(day_trip_lists_str)
         print_day_trip_events()
     while True:
-        if not satisfied():
-            if what_not_satisfied_prompt():
-                continue
-        else:
+        if satisfied():
             break
-        break
+        else:
+            while_not_satisfied_prompt()
+            continue
     break
-
 
 
 
