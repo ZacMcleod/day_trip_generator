@@ -74,7 +74,7 @@ def print_day_trip_events():
         time.sleep(1)
 
 def satisfied():
-    satisfied = input("are you satisfied with the results? Type 'yes for completion or 'no' to regenerate Day Trip: ")
+    satisfied = input("are you satisfied with the results? Type 'yes for completion or 'no' to respecify Day Trip: ")
     if satisfied.lower() == 'yes':
         time.sleep(1)
         print('Complete')
@@ -102,19 +102,19 @@ def what_not_satisfied_prompt():
                 new_random_event = random.choice(restaurants)
                 time.sleep(1)
         elif event_not_satisfied.lower() == 'all':
-            print('Lets restart...')
+            print_day_trip_events()
             return True
         else:
             print("I'm sorry, I don't understand")
             time.sleep(1)
             continue
         satisfied_yet = input(f'''The new event for {event_not_satisfied} is {new_random_event}
-                                Are you satisfied?: ''')
+Are you satisfied?: ''')
         if satisfied_yet.lower() == 'no':
             continue
         elif satisfied_yet.lower() == 'yes':
-            print(f'''Great! These are your events: 
-                        {print_day_trip_events()}''')
+            print(f'''Great! Those are your events: 
+                        ''')
             return False
 
 # Day Trip Generator
@@ -127,14 +127,14 @@ while True:
     else:
         events_to_randomize = what_events_to_randomize(day_trip_lists_str)
         print_day_trip_events()
-
-    if satisfied():
-        break
-    else:
-        if what_not_satisfied_prompt():
-            continue
+    while True:
+        if not satisfied():
+            if what_not_satisfied_prompt():
+                continue
         else:
             break
+        break
+    break
 
 
 
