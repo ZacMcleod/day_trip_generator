@@ -14,7 +14,7 @@ day_trip_lists_str = ['destination', 'restaurant', 'transportation', 'entertainm
 
 # Functions
 
-def welcome_to_day_trip_generator():
+def welcome():
     print('''
     Welcome to Day Trip Generator!
     ''')
@@ -63,16 +63,16 @@ def print_day_trip_events():
     Your Day Trip events include these in them:''')
     time.sleep(2)
     if 'destination' in events_to_randomize:
-        print(random.choice(destinations))
+        print(f'Destination ---> {random.choice(destinations)}')
         time.sleep(1)
     if 'transportation' in events_to_randomize:
-        print(f'Riding {random.choice(transportations)}')
+        print(f'Transportation: ---> {random.choice(transportations)}')
         time.sleep(1)
     if 'entertainment' in events_to_randomize:
-        print(random.choice(entertainments))
+        print(f'Entertainment: ---> {random.choice(entertainments)}')
         time.sleep(1)
     if 'restaurant' in events_to_randomize:
-        print(random.choice(restaurants))
+        print(f'Restaurant: ---> {random.choice(restaurants)}')
         time.sleep(1)
 
 def satisfied():
@@ -114,7 +114,7 @@ def while_not_satisfied_prompt():
         return True
 
 # Day Trip Generator
-welcome_to_day_trip_generator()
+welcome()
 while True:
     if prompt_every_variable_choice():
         events_to_randomize = day_trip_lists_str
