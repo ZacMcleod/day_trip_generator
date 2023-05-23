@@ -15,7 +15,9 @@ day_trip_lists_str = ['destination', 'restaurant', 'transportation', 'entertainm
 # Functions
 
 def welcome_to_day_trip_generator():
-    print('''Welcome to Day Trip Generator!''')
+    print('''
+    Welcome to Day Trip Generator!
+    ''')
     time.sleep(2)
 
 def prompt_every_variable_choice():
